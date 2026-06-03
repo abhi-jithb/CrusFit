@@ -114,9 +114,24 @@ export const homePageContent = {
   },
   gallery: {
     eyebrow: "Gallery",
-    title: "A visual direction for a premium fight academy.",
+    title: "Training media from a premium fight academy.",
     description:
-      "The initial gallery establishes the dark, sharp and energetic visual language for the brand. Real training photography can replace these assets as content becomes available.",
+      "Photos and video slots are structured for training, sparring, events, competitions and group sessions as real academy media becomes available.",
+    tabs: {
+      ariaLabel: "Gallery media type",
+      photos: "Photos",
+      videos: "Videos",
+    },
+    lightbox: {
+      closeAriaLabel: "Close gallery image preview",
+      closeLabel: "Close",
+      dialogLabel: "Gallery image preview",
+      openLabel: "Open image preview",
+    },
+    videoLabels: {
+      embedTitle: "Embedded YouTube video",
+      openExternal: "Open media link",
+    },
   },
   contact: {
     eyebrow: "Contact",
