@@ -24,7 +24,7 @@ export function SiteHeader() {
           </span>
         </Link>
         <nav aria-label={content.navAriaLabel} className="hidden md:block">
-          <ul className="flex items-center gap-6 text-sm font-semibold text-neutral-300">
+          <ul className="flex items-center gap-4 text-sm font-semibold text-neutral-300 lg:gap-6">
             {siteConfig.navItems.map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className="transition hover:text-brand-yellow">

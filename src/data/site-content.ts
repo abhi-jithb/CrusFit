@@ -1,6 +1,6 @@
 import { siteConfig } from "@/constants/site";
 
-import { achievements } from "./achievements";
+import { achievements, championAchievements, championPerformerGroups } from "./achievements";
 
 export const siteAssets = {
   heroImage: "/images/seo/crustfit-hero.png",
@@ -10,6 +10,11 @@ export const siteAssets = {
 
 const heroAchievements = achievements.filter((achievement) =>
   ["rating", "reviews", "disciplines"].includes(achievement.id),
+);
+
+const performerCount = championPerformerGroups.reduce(
+  (total, group) => total + group.performers.length,
+  0,
 );
 
 export const homePageContent = {
@@ -65,6 +70,30 @@ export const homePageContent = {
     title: "Striking, grappling, martial arts and performance fitness.",
     description:
       "The program foundation keeps every discipline visible from day one, while leaving room for dedicated class pages, schedules and coach assignments later.",
+  },
+  champions: {
+    eyebrow: "Hall of Champions",
+    title: "Proof earned in rings, mats and competitive arenas.",
+    description:
+      "CRUSTFIT INDIA celebrates athletes who have represented the academy through boxing titles, national medals, record-setting performances and championship results.",
+    statsAriaLabel: "Hall of Champions highlights",
+    cardAchievementLabel: "Recognized achievements",
+    performerEyebrow: "Season recognition",
+    performerRosterLabel: "Recognized performers",
+    stats: [
+      {
+        value: championAchievements.length.toString(),
+        label: "Champion profiles",
+      },
+      {
+        value: performerCount.toString(),
+        label: "Best performers",
+      },
+      {
+        value: "2024-25",
+        label: "Featured season",
+      },
+    ],
   },
   coaches: {
     eyebrow: "Coaching team",

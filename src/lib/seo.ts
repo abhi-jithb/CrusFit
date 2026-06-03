@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 
 import { siteConfig } from "@/constants/site";
-import { siteAssets } from "@/data/site-content";
+import { championAchievements, championPerformerGroups } from "@/data/achievements";
+import { homePageContent, siteAssets } from "@/data/site-content";
 import type { LocalSeoPage } from "@/types/seo";
 
 export function absoluteUrl(path: string) {
@@ -120,5 +121,56 @@ export function buildLocalSeoJsonLd(page: LocalSeoPage) {
   return {
     "@context": "https://schema.org",
     "@graph": [buildLocalBusinessSchema(page), buildFaqSchema(page), buildBreadcrumbSchema(page)],
+  };
+}
+
+export function buildHallOfChampionsJsonLd() {
+  const hallUrl = `${absoluteUrl("/")}#hall-of-champions`;
+  const organization = {
+    "@type": "SportsOrganization",
+    name: siteConfig.name,
+    url: absoluteUrl("/"),
+  };
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": hallUrl,
+    name: `${siteConfig.name} Hall of Champions`,
+    description: homePageContent.champions.description,
+    itemListElement: [
+      ...championAchievements.map((champion, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "Person",
+          "@id": `${absoluteUrl("/")}#champion-${champion.id}`,
+          name: champion.name,
+          award: champion.achievements,
+          knowsAbout: champion.disciplines,
+          memberOf: organization,
+        },
+      })),
+      ...championPerformerGroups.map((group, groupIndex) => ({
+        "@type": "ListItem",
+        position: championAchievements.length + groupIndex + 1,
+        item: {
+          "@type": "ItemList",
+          "@id": `${absoluteUrl("/")}#${group.id}`,
+          name: group.title,
+          description: group.summary,
+          itemListElement: group.performers.map((performer, performerIndex) => ({
+            "@type": "ListItem",
+            position: performerIndex + 1,
+            item: {
+              "@type": "Person",
+              name: performer,
+              award: group.title,
+              memberOf: organization,
+            },
+          })),
+        },
+      })),
+    ],
   };
 }

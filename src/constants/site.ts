@@ -30,6 +30,7 @@ export const siteConfig = {
   navItems: [
     { href: "/#about", label: "About" },
     { href: "/#programs", label: "Programs" },
+    { href: "/#hall-of-champions", label: "Champions" },
     { href: "/#coaches", label: "Coaches" },
     { href: "/#gallery", label: "Gallery" },
     { href: "/#contact", label: "Contact" },

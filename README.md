@@ -38,7 +38,7 @@ Content is intentionally separated from UI components so pages and sections can 
 
 ```text
 src/data/
-  achievements.ts   Trust indicators and measurable academy signals
+  achievements.ts   Trust indicators, Hall of Champions cards and performer groups
   coaches.ts        Coach/team profile content
   gallery.ts        Gallery cards and image metadata
   local-seo.ts      Local SEO page content and FAQs
