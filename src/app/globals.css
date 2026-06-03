@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+:root {
+  --crustfit-black: #050505;
+  --crustfit-ink: #111111;
+  --crustfit-panel: #181818;
+  --crustfit-muted: #a3a3a3;
+  --crustfit-white: #f8f8f8;
+  --crustfit-yellow: #f5c400;
+}
+
+@theme inline {
+  --color-brand-black: var(--crustfit-black);
+  --color-brand-ink: var(--crustfit-ink);
+  --color-brand-panel: var(--crustfit-panel);
+  --color-brand-muted: var(--crustfit-muted);
+  --color-brand-white: var(--crustfit-white);
+  --color-brand-yellow: var(--crustfit-yellow);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--crustfit-black);
+}
+
+body {
+  min-height: 100svh;
+  margin: 0;
+  background:
+    radial-gradient(circle at top right, rgba(245, 196, 0, 0.12), transparent 28rem),
+    var(--crustfit-black);
+  color: var(--crustfit-white);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--crustfit-yellow);
+  color: var(--crustfit-black);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 3px solid var(--crustfit-yellow);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+}
