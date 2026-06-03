@@ -1,8 +1,9 @@
 import { ImageResponse } from "next/og";
 
 import { siteConfig } from "@/constants/site";
+import { seoContent } from "@/data/site-content";
 
-export const alt = "CRUSTFIT INDIA combat sports academy in Kollam, Kerala";
+export const alt = seoContent.openGraphAlt;
 export const size = {
   width: 1200,
   height: 630,
@@ -36,11 +37,11 @@ export default function OpenGraphImage() {
         }}
       >
         <div style={{ color: "#f5c400", fontSize: 30, fontWeight: 700 }}>
-          Combat Sports & Martial Arts Academy
+          {seoContent.openGraphEyebrow}
         </div>
         <div style={{ fontSize: 96, fontWeight: 900, lineHeight: 0.95 }}>{siteConfig.name}</div>
         <div style={{ color: "#d4d4d4", fontSize: 36, maxWidth: 820 }}>
-          Boxing, Kickboxing, MMA, Muay Thai and martial arts training in Kollam, Kerala.
+          {seoContent.openGraphSummary}
         </div>
       </div>
     </div>,

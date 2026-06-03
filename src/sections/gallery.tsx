@@ -2,33 +2,33 @@ import Image from "next/image";
 
 import { SectionWrapper } from "@/components/section-wrapper";
 import { MotionReveal } from "@/components/ui";
-import { galleryItems } from "@/data/home";
+import { galleryItems } from "@/data/gallery";
+import { homePageContent } from "@/data/site-content";
 
 export function Gallery() {
+  const content = homePageContent.gallery;
+
   return (
     <SectionWrapper
       id="gallery"
-      eyebrow="Gallery"
-      title="A visual direction for a premium fight academy."
-      description="The initial gallery establishes the dark, sharp and energetic visual language for the brand. Real training photography can replace these assets as content becomes available."
+      eyebrow={content.eyebrow}
+      title={content.title}
+      description={content.description}
       className="bg-brand-black"
     >
       <ul className="grid gap-4 md:grid-cols-3">
-        {galleryItems.map((item, index) => (
+        {galleryItems.map((item) => (
           <li key={item.title}>
             <MotionReveal className="h-full" hoverScale>
               <article className="combat-card combat-card--interactive h-full overflow-hidden">
                 <div className="relative aspect-[4/3]">
                   <Image
                     src={item.image}
-                    alt={`${item.title} at CRUSTFIT INDIA`}
+                    alt={item.alt}
                     fill
                     className="object-cover"
                     sizes="(min-width: 768px) 33vw, 100vw"
-                    style={{
-                      objectPosition:
-                        index === 1 ? "center" : index === 2 ? "right center" : "left center",
-                    }}
+                    style={{ objectPosition: item.objectPosition }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/25 to-transparent" />
                 </div>

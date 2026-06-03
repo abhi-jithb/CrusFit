@@ -1,14 +1,17 @@
 import { SectionWrapper } from "@/components/section-wrapper";
 import { ProgramCard } from "@/components/ui";
-import { programs } from "@/data/home";
+import { programs } from "@/data/programs";
+import { homePageContent } from "@/data/site-content";
 
 export function Programs() {
+  const content = homePageContent.programs;
+
   return (
     <SectionWrapper
       id="programs"
-      eyebrow="Programs"
-      title="Striking, grappling, martial arts and performance fitness."
-      description="The program foundation keeps every discipline visible from day one, while leaving room for dedicated class pages, schedules and coach assignments later."
+      eyebrow={content.eyebrow}
+      title={content.title}
+      description={content.description}
       className="bg-brand-ink"
     >
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

@@ -1,5 +1,26 @@
 import type { LocalSeoPage } from "@/types/seo";
 
+import { achievements } from "./achievements";
+
+function getAchievementStat(id: string, labelOverride?: string) {
+  const achievement = achievements.find((item) => item.id === id);
+
+  if (!achievement) {
+    throw new Error(`Missing achievement data for ${id}`);
+  }
+
+  return {
+    value: achievement.value,
+    label: labelOverride ?? achievement.label,
+  };
+}
+
+const localSeoTrustStats = [getAchievementStat("rating"), getAchievementStat("reviews")];
+
+function buildLocalSeoStats(...stats: LocalSeoPage["stats"]) {
+  return [...localSeoTrustStats, ...stats];
+}
+
 export const localSeoPages = [
   {
     slug: "boxing-kollam",
@@ -18,11 +39,7 @@ export const localSeoPages = [
       "Combat sports academy Kollam",
       "Martial Arts Academy Kollam",
     ],
-    stats: [
-      { value: "5.0", label: "Rating" },
-      { value: "100+", label: "Reviews" },
-      { value: "10", label: "Disciplines" },
-    ],
+    stats: buildLocalSeoStats(getAchievementStat("disciplines")),
     highlights: [
       {
         title: "Boxing fundamentals",
@@ -76,11 +93,7 @@ export const localSeoPages = [
       "Striking classes Kollam",
       "Martial Arts Academy Kollam",
     ],
-    stats: [
-      { value: "5.0", label: "Rating" },
-      { value: "100+", label: "Reviews" },
-      { value: "All", label: "Levels" },
-    ],
+    stats: buildLocalSeoStats({ value: "All", label: "Levels" }),
     highlights: [
       {
         title: "Punches and kicks",
@@ -134,11 +147,7 @@ export const localSeoPages = [
       "Combat sports academy Kollam",
       "Martial Arts Academy Kollam",
     ],
-    stats: [
-      { value: "5.0", label: "Rating" },
-      { value: "100+", label: "Reviews" },
-      { value: "Hybrid", label: "Training" },
-    ],
+    stats: buildLocalSeoStats({ value: "Hybrid", label: "Training" }),
     highlights: [
       {
         title: "Integrated skill work",
@@ -192,11 +201,7 @@ export const localSeoPages = [
       "Muay Thai training Kerala",
       "Combat sports academy Kollam",
     ],
-    stats: [
-      { value: "5.0", label: "Rating" },
-      { value: "100+", label: "Reviews" },
-      { value: "8", label: "Combat Arts" },
-    ],
+    stats: buildLocalSeoStats({ value: "8", label: "Combat Arts" }),
     highlights: [
       {
         title: "Muay Thai fundamentals",

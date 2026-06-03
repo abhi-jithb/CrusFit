@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { siteConfig } from "@/constants/site";
+import { siteAssets } from "@/data/site-content";
 import type { LocalSeoPage } from "@/types/seo";
 
 export function absoluteUrl(path: string) {
@@ -48,7 +49,7 @@ function buildLocalBusinessSchema(page: LocalSeoPage) {
     "@id": `${absoluteUrl(page.path)}#localbusiness`,
     name: siteConfig.name,
     description: page.metaDescription,
-    image: absoluteUrl("/images/crustfit-hero.png"),
+    image: absoluteUrl(siteAssets.heroImage),
     url: absoluteUrl(page.path),
     address: {
       "@type": "PostalAddress",

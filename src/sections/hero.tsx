@@ -1,17 +1,16 @@
 import Image from "next/image";
 
 import { Badge, ButtonLink, Container, MotionReveal, StatCard } from "@/components/ui";
-import { siteConfig } from "@/constants/site";
-import { programs } from "@/data/home";
-
-const trustIndicators = ["5.0 Rating", "100+ Reviews", "Multiple Combat Disciplines"];
+import { homePageContent, siteAssets } from "@/data/site-content";
 
 export function Hero() {
+  const content = homePageContent.hero;
+
   return (
     <section className="relative isolate min-h-svh overflow-hidden border-b border-white/10">
       <Image
-        src="/images/crustfit-hero.png"
-        alt="CRUSTFIT INDIA training floor with boxing and MMA equipment"
+        src={siteAssets.heroImage}
+        alt={content.imageAlt}
         fill
         priority
         className="-z-20 object-cover object-center"
@@ -24,34 +23,31 @@ export function Hero() {
       <Container className="flex min-h-svh items-center py-20 sm:py-24">
         <MotionReveal className="w-full max-w-4xl" variant="slide-up">
           <p className="text-sm font-black uppercase tracking-normal text-brand-yellow sm:text-base">
-            {siteConfig.name}
+            {content.eyebrow}
           </p>
           <h1 className="mt-5 max-w-4xl text-5xl font-black leading-[0.98] text-brand-white sm:text-6xl lg:text-7xl">
-            Kollam&apos;s Premier Boxing & Martial Arts Academy
+            {content.title}
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-neutral-200 sm:text-xl">
-            Train with a combat-sports academy built for serious striking, disciplined martial arts,
-            strength, mobility and community in Kollam, Kerala.
+            {content.description}
           </p>
-          <ul aria-label="CRUSTFIT trust indicators" className="mt-7 flex flex-wrap gap-2">
-            {trustIndicators.map((indicator) => (
-              <li key={indicator}>
-                <Badge variant={indicator === "5.0 Rating" ? "accent" : "outline"}>
-                  {indicator}
-                </Badge>
+          <ul aria-label={content.trustIndicatorsLabel} className="mt-7 flex flex-wrap gap-2">
+            {content.trustIndicators.map((indicator) => (
+              <li key={indicator.label}>
+                <Badge variant={indicator.variant}>{indicator.label}</Badge>
               </li>
             ))}
           </ul>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href="#programs">Explore programs</ButtonLink>
-            <ButtonLink href="#contact" variant="secondary">
-              Book a visit
+            <ButtonLink href={content.primaryCta.href}>{content.primaryCta.label}</ButtonLink>
+            <ButtonLink href={content.secondaryCta.href} variant="secondary">
+              {content.secondaryCta.label}
             </ButtonLink>
           </div>
           <dl className="mt-10 grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3">
-            <StatCard label="Rating" value="5.0" />
-            <StatCard label="Reviews" value="100+" />
-            <StatCard label="Combat Disciplines" value={programs.length} />
+            {content.stats.map((stat) => (
+              <StatCard key={`${stat.value}-${stat.label}`} label={stat.label} value={stat.value} />
+            ))}
           </dl>
         </MotionReveal>
       </Container>

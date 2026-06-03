@@ -23,13 +23,61 @@ src/
   app/          App Router routes, metadata, sitemap, robots and global styles
   components/   Shared layout primitives and site chrome
   constants/    Site-level configuration and navigation
-  data/         Homepage content data
+  data/         Typed content collections and page copy
   lib/          Small shared utilities
   sections/     Homepage section components
   types/        Shared TypeScript content types
 public/
-  images/       Project visual assets
+  images/       Organized image asset buckets
+  videos/       Organized video asset buckets
 ```
+
+## Content Architecture
+
+Content is intentionally separated from UI components so pages and sections can scale without hardcoded copy.
+
+```text
+src/data/
+  achievements.ts   Trust indicators and measurable academy signals
+  coaches.ts        Coach/team profile content
+  gallery.ts        Gallery cards and image metadata
+  local-seo.ts      Local SEO page content and FAQs
+  programs.ts       Program catalogue used across sections and SEO pages
+  site-content.ts   Shared section copy, CTAs, chrome labels and asset paths
+  testimonials.ts   Testimonial/story themes
+
+src/types/
+  achievement.ts
+  coach.ts
+  gallery.ts
+  program.ts
+  testimonial.ts
+  seo.ts
+```
+
+Sections import typed data collections and render them dynamically. Add new content by updating the relevant `src/data/*` file first, then only touch UI when the presentation model genuinely changes.
+
+## Asset Organization
+
+Assets are grouped by future editorial purpose:
+
+```text
+public/
+  images/
+    brand/
+    coaches/
+    programs/
+    achievements/
+    gallery/
+    testimonials/
+    seo/
+  videos/
+    programs/
+    events/
+    achievements/
+```
+
+The current hero/SEO image lives at `public/images/seo/crustfit-hero.png`. Keep reusable paths in `src/data/site-content.ts` so components and schemas reference one source of truth.
 
 ## Development Setup
 
@@ -97,14 +145,14 @@ The app is static-first, so it can also be hosted on any platform that supports 
 - The homepage is forced static with `dynamic = "force-static"`.
 - The hero image uses `next/image` with priority loading.
 - Tailwind CSS keeps styling co-located and avoids duplicate custom CSS.
-- No animation libraries, icon packages or unnecessary runtime dependencies are included.
+- Framer Motion is isolated to a small reveal wrapper and used sparingly.
 - Content is stored as typed data so future sections can grow without prop drilling.
 
 ## Coding Standards
 
 - Use TypeScript for all application code.
 - Prefer Server Components unless interactivity requires a Client Component.
-- Keep content data in `src/data` and site-wide values in `src/constants`.
+- Keep editorial content in `src/data`, domain shapes in `src/types`, and environment/site configuration in `src/constants`.
 - Favor composition with reusable primitives such as `Container` and `SectionWrapper`.
 - Avoid fabricated operational details. Add verified coach names, schedules, contact channels and map links before launch.
 - Run `npm run lint`, `npm run typecheck` and `npm run build` before merging production changes.

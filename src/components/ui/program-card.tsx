@@ -1,4 +1,4 @@
-import type { Program } from "@/types/content";
+import type { Program } from "@/types/program";
 
 import { Badge } from "./badge";
 import { MotionReveal } from "./motion-reveal";

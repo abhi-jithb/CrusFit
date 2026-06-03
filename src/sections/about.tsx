@@ -1,35 +1,20 @@
 import { SectionWrapper } from "@/components/section-wrapper";
 import { MotionReveal } from "@/components/ui";
-
-const academyPillars = [
-  {
-    title: "Combat-first coaching",
-    summary:
-      "Training is organized around useful technique, safe intensity and measurable progress.",
-  },
-  {
-    title: "Beginner-aware pathways",
-    summary:
-      "New athletes can start with foundations before moving toward sparring or advanced classes.",
-  },
-  {
-    title: "Fitness with purpose",
-    summary:
-      "Strength, conditioning, mobility and rhythm-based sessions support the combat programs.",
-  },
-];
+import { homePageContent } from "@/data/site-content";
 
 export function About() {
+  const content = homePageContent.about;
+
   return (
     <SectionWrapper
       id="about"
-      eyebrow="About the academy"
-      title="A professional combat sports base in Kollam."
-      description="CRUSTFIT INDIA brings striking, grappling, martial arts and performance fitness into one disciplined academy environment for athletes, beginners and fitness-focused members."
+      eyebrow={content.eyebrow}
+      title={content.title}
+      description={content.description}
       className="bg-brand-black"
     >
       <div className="grid gap-4 md:grid-cols-3">
-        {academyPillars.map((pillar) => (
+        {content.pillars.map((pillar) => (
           <MotionReveal key={pillar.title} className="h-full" hoverScale>
             <article className="combat-card combat-card--interactive h-full p-6">
               <h3 className="text-xl font-black text-brand-white">{pillar.title}</h3>
