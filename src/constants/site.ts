@@ -28,10 +28,10 @@ export const siteConfig = {
     country: "India",
   },
   navItems: [
-    { href: "#about", label: "About" },
-    { href: "#programs", label: "Programs" },
-    { href: "#coaches", label: "Coaches" },
-    { href: "#gallery", label: "Gallery" },
-    { href: "#contact", label: "Contact" },
+    { href: "/#about", label: "About" },
+    { href: "/#programs", label: "Programs" },
+    { href: "/#coaches", label: "Coaches" },
+    { href: "/#gallery", label: "Gallery" },
+    { href: "/#contact", label: "Contact" },
   ] satisfies NavItem[],
 };

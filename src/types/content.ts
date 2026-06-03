@@ -1,5 +1,5 @@
 export type NavItem = {
-  href: `#${string}` | "/";
+  href: `#${string}` | `/#${string}` | "/";
   label: string;
 };
 
