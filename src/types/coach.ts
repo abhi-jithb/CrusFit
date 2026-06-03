@@ -1,7 +1,11 @@
 export type Coach = {
-  disciplines: string[];
-  image?: string;
+  achievements: string[];
+  certifications: string[];
+  experience: string;
+  image: {
+    alt: string;
+    src: string;
+  };
   name: string;
-  role: string;
-  summary: string;
+  specialization: string;
 };

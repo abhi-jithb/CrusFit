@@ -97,9 +97,14 @@ export const homePageContent = {
   },
   coaches: {
     eyebrow: "Coaching team",
-    title: "Specialist coaching roles for every training path.",
+    title: "Specialist coaching profiles for every training path.",
     description:
-      "The coach directory is structured for verified profiles, credentials and class ownership as the academy content is finalized.",
+      "The coach directory is structured for verified portraits, certifications, experience and class ownership as the academy content is finalized.",
+    cardLabels: {
+      achievements: "Profile focus",
+      certifications: "Certifications",
+      experience: "Experience",
+    },
   },
   testimonials: {
     eyebrow: "Testimonials",
