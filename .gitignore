@@ -4,15 +4,21 @@
 # next.js
 /.next
 /out
+/.vercel
+/.turbo
 
 # production
 /build
 
 # misc
 .DS_Store
+Thumbs.db
 *.pem
+.cache
+.eslintcache
 
 # debug
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -24,3 +30,14 @@ pnpm-debug.log*
 
 # typescript
 *.tsbuildinfo
+
+# tests and coverage
+/coverage
+/playwright-report
+/test-results
+
+# editors
+.idea
+.vscode
+*.swp
+*.swo
