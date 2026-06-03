@@ -4,9 +4,9 @@ const fallbackUrl = "https://crustfitindia.com";
 
 export const siteConfig = {
   name: "CRUSTFIT INDIA",
-  title: "CRUSTFIT INDIA | Combat Sports & Martial Arts Academy in Kollam",
+  title: "CRUSTFIT INDIA | Kollam's Premier Boxing & Martial Arts Academy",
   description:
-    "CRUSTFIT INDIA is a combat sports and martial arts academy in Kollam, Kerala, training Boxing, Kickboxing, MMA, Muay Thai, Karate, Taekwondo, Jiu Jitsu, Sambo, Yoga and Zumba.",
+    "CRUSTFIT INDIA is Kollam's premier boxing and martial arts academy, training Boxing, Kickboxing, MMA, Muay Thai, Karate, Taekwondo, Jiu Jitsu, Sambo, Yoga and Zumba.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? fallbackUrl,
   locale: "en_IN",
   keywords: [
