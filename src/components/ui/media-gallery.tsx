@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { useEffect, useId, useRef, useState } from "react";
 
-import type { GalleryPhoto, GalleryVideo } from "@/types/gallery";
+import type { GalleryPhoto } from "@/types/gallery";
+import type { VideoItem } from "@/types/video";
 
 import { Badge } from "./badge";
 import { buttonClassName } from "./button";
@@ -23,14 +24,14 @@ type MediaGalleryContent = {
   };
   videoLabels: {
     embedTitle: string;
-    openExternal: string;
+    sourceLabel: string;
   };
 };
 
 type MediaGalleryProps = {
   content: MediaGalleryContent;
   photos: GalleryPhoto[];
-  videos: GalleryVideo[];
+  videos: VideoItem[];
 };
 
 export function MediaGallery({ content, photos, videos }: MediaGalleryProps) {
@@ -38,6 +39,12 @@ export function MediaGallery({ content, photos, videos }: MediaGalleryProps) {
   const [activePhoto, setActivePhoto] = useState<GalleryPhoto | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const tabsId = useId();
+
+  useEffect(() => {
+    if (window.location.hash === "#videos") {
+      setActiveTab("videos");
+    }
+  }, []);
 
   useEffect(() => {
     if (!activePhoto) {
@@ -62,6 +69,7 @@ export function MediaGallery({ content, photos, videos }: MediaGalleryProps) {
 
   return (
     <>
+      <span id="videos" className="block scroll-mt-24" />
       <div
         role="tablist"
         aria-label={content.tabs.ariaLabel}
@@ -138,59 +146,27 @@ export function MediaGallery({ content, photos, videos }: MediaGalleryProps) {
             <li key={video.id}>
               <MotionReveal className="h-full" delay={Math.min(index * 0.04, 0.16)} hoverScale>
                 <article className="combat-card combat-card--interactive h-full overflow-hidden">
-                  {video.embedUrl ? (
-                    <div className="aspect-video bg-brand-panel">
-                      <iframe
-                        title={`${content.videoLabels.embedTitle}: ${video.title}`}
-                        src={video.embedUrl}
-                        loading="lazy"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
-                        className="h-full w-full border-0"
-                      />
-                    </div>
-                  ) : (
-                    <a
-                      href={video.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label={`${content.videoLabels.openExternal}: ${video.title}`}
-                      className="group block"
-                    >
-                      <div className="relative aspect-video overflow-hidden bg-brand-panel">
-                        <Image
-                          src={video.thumbnail}
-                          alt={video.thumbnailAlt}
-                          fill
-                          loading="lazy"
-                          sizes="(min-width: 1024px) 33vw, 100vw"
-                          className="object-cover transition duration-300 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-brand-black/45" />
-                        <div className="absolute inset-0 grid place-items-center">
-                          <span className="grid size-14 place-items-center rounded-full border border-brand-yellow bg-brand-black/80 text-brand-yellow">
-                            <span
-                              aria-hidden="true"
-                              className="ml-1 h-0 w-0 border-y-[0.45rem] border-l-[0.75rem] border-y-transparent border-l-brand-yellow"
-                            />
-                          </span>
-                        </div>
-                      </div>
-                    </a>
-                  )}
+                  <div className="aspect-video bg-brand-panel">
+                    <iframe
+                      title={`${content.videoLabels.embedTitle}: ${video.title}`}
+                      src={video.embedUrl}
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      className="h-full w-full border-0"
+                    />
+                  </div>
                   <div className="p-5">
-                    <Badge variant={video.embedUrl ? "accent" : "outline"}>
-                      {video.platformLabel}
-                    </Badge>
+                    <Badge variant="accent">YouTube</Badge>
                     <h3 className="mt-4 text-xl font-black text-brand-white">{video.title}</h3>
                     <p className="mt-2 leading-7 text-neutral-300">{video.summary}</p>
                     <a
-                      href={video.url}
+                      href={video.sourceUrl}
                       target="_blank"
                       rel="noreferrer"
                       className="mt-4 inline-flex min-h-10 items-center text-sm font-black uppercase text-brand-yellow transition hover:text-brand-white"
                     >
-                      {video.ctaLabel}
+                      {content.videoLabels.sourceLabel}
                     </a>
                   </div>
                 </article>

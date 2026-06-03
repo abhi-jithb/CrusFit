@@ -4,7 +4,7 @@ Production-grade foundation for the CRUSTFIT INDIA combat sports and martial art
 
 ## Project Overview
 
-CRUSTFIT INDIA is positioned as a professional combat sports academy covering Boxing, Kickboxing, MMA, Muay Thai, Karate, Taekwondo, Jiu Jitsu, Sambo, Yoga and Zumba. This foundation creates a static-first homepage, SEO-ready metadata, reusable layout primitives and a minimal content system that can grow into schedules, program pages, coach profiles and verified academy media.
+CRUSTFIT INDIA is positioned as a professional combat sports academy covering Boxing, Kickboxing, MMA, Muay Thai, Karate, Taekwondo, Jiu Jitsu, Sambo, Yoga and Zumba. This foundation creates a static-first homepage, SEO-ready metadata, reusable layout primitives and a scalable content system for champion profiles, coaches, gallery media and YouTube video embeds.
 
 ## Tech Stack
 
@@ -38,9 +38,11 @@ Content is intentionally separated from UI components so pages and sections can 
 
 ```text
 src/data/
-  achievements.ts   Trust indicators, Hall of Champions cards and performer groups
+  achievements.ts   Trust indicators and homepage stat data
+  champions.ts      Hall of Champions profiles, performer groups and leadership
   coaches.ts        Coach profile cards, credentials and image metadata
-  gallery.ts        Photo and video media metadata for the tabbed gallery
+  gallery.ts        Photo metadata for gallery previews and the full gallery route
+  videos.ts         YouTube embed metadata for homepage and gallery page video views
   local-seo.ts      Local SEO page content and FAQs
   programs.ts       Program catalogue used across sections and SEO pages
   site-content.ts   Shared section copy, CTAs, chrome labels and asset paths
@@ -48,14 +50,16 @@ src/data/
 
 src/types/
   achievement.ts
+  champion.ts
   coach.ts
   gallery.ts
   program.ts
   testimonial.ts
+  video.ts
   seo.ts
 ```
 
-Sections import typed data collections and render them dynamically. Add new content by updating the relevant `src/data/*` file first, then only touch UI when the presentation model genuinely changes.
+Sections import typed data collections and render them dynamically. The homepage uses previews only: first 4 champions, first 3 coaches, first 3 gallery photos and the first available YouTube videos. Full collections render at `/champions`, `/coaches` and `/gallery`. Add new content by updating the relevant `src/data/*` file first, then only touch UI when the presentation model genuinely changes.
 
 ## Asset Organization
 
@@ -78,6 +82,8 @@ public/
 ```
 
 The current hero/SEO image lives at `public/images/seo/crustfit-hero.png`. Keep reusable paths in `src/data/site-content.ts` so components and schemas reference one source of truth.
+
+Champion and leadership placeholder images live in `public/images/achievements/`. Coach and gallery placeholders are stored in their matching asset buckets and rendered through `next/image` with fixed aspect ratios to avoid layout shifts.
 
 ## Development Setup
 
@@ -137,6 +143,8 @@ The app is static-first, so it can also be hosted on any platform that supports 
 - Dynamic Open Graph image generation is available at `/opengraph-image`.
 - `src/app/robots.ts` exposes crawl rules and sitemap discovery.
 - `src/app/sitemap.ts` generates the base sitemap.
+- Site-wide JSON-LD adds LocalBusiness, Organization, ContactPoint, ContactPage and social profile schema.
+- `/champions`, `/coaches` and `/gallery` include route-specific metadata, canonicals and collection JSON-LD.
 - Semantic landmarks, section headings and descriptive image alt text are used throughout the homepage.
 
 ## Performance Strategy

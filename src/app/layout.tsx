@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 
+import { JsonLd } from "@/components/json-ld";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { siteConfig } from "@/constants/site";
+import { buildSiteJsonLd } from "@/lib/seo";
 
 import "./globals.css";
 
@@ -82,6 +84,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en-IN" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="bg-brand-black text-brand-white antialiased">
+        <JsonLd data={buildSiteJsonLd()} />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-brand-yellow focus:px-4 focus:py-3 focus:text-sm focus:font-bold focus:text-brand-black"

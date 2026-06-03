@@ -1,4 +1,4 @@
-import type { GalleryPhoto, GalleryVideo } from "@/types/gallery";
+import type { GalleryPhoto } from "@/types/gallery";
 
 export const galleryPhotos: GalleryPhoto[] = [
   {
@@ -51,43 +51,5 @@ export const galleryPhotos: GalleryPhoto[] = [
     alt: "Group conditioning session inside a dark combat sports academy",
     aspectRatio: "aspect-[4/3]",
     objectPosition: "center",
-  },
-];
-
-export const galleryVideos: GalleryVideo[] = [
-  {
-    id: "youtube-training-tour",
-    title: "YouTube embeds",
-    platform: "youtube",
-    platformLabel: "YouTube",
-    summary:
-      "A future slot for long-form academy walkthroughs, training recaps and program explainers.",
-    thumbnail: "/images/gallery/training-placeholder.webp",
-    thumbnailAlt: "Training floor preview for a future YouTube academy video",
-    url: "https://www.youtube.com/@crustfitindia",
-    ctaLabel: "Open YouTube channel",
-  },
-  {
-    id: "instagram-reels",
-    title: "Instagram reels",
-    platform: "instagram",
-    platformLabel: "Instagram reels",
-    summary: "A future slot for short reels covering pads, sparring, events and member moments.",
-    thumbnail: "/images/gallery/events-placeholder.webp",
-    thumbnailAlt: "Academy event preview for future Instagram reels",
-    url: "https://www.instagram.com/crustfitindia/",
-    ctaLabel: "Open Instagram reels",
-  },
-  {
-    id: "youtube-shorts",
-    title: "Shorts",
-    platform: "shorts",
-    platformLabel: "Shorts",
-    summary:
-      "A future slot for fast training clips, technique snapshots and competition highlights.",
-    thumbnail: "/images/gallery/sparring-placeholder.webp",
-    thumbnailAlt: "Sparring preview for future short-form video clips",
-    url: "https://www.youtube.com/@crustfitindia/shorts",
-    ctaLabel: "Open Shorts",
   },
 ];

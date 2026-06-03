@@ -8,20 +8,28 @@ import { HallOfChampions } from "@/sections/hall-of-champions";
 import { Hero } from "@/sections/hero";
 import { Programs } from "@/sections/programs";
 import { Testimonials } from "@/sections/testimonials";
+import { Videos } from "@/sections/videos";
 
 export const dynamic = "force-static";
 
 export default function Home() {
   return (
     <>
-      <JsonLd data={buildHallOfChampionsJsonLd()} />
+      <JsonLd
+        data={buildHallOfChampionsJsonLd("/", "hall-of-champions", {
+          includeGroups: false,
+          includeLeadership: false,
+          limit: 4,
+        })}
+      />
       <Hero />
       <About />
       <Programs />
-      <HallOfChampions />
-      <Coaches />
+      <HallOfChampions preview showLeadership={false} />
+      <Coaches preview />
       <Testimonials />
-      <Gallery />
+      <Gallery preview />
+      <Videos preview />
       <Contact />
     </>
   );

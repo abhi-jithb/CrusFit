@@ -1,12 +1,111 @@
 import { siteConfig } from "@/constants/site";
 
-import { achievements, championAchievements, championPerformerGroups } from "./achievements";
+import { achievements } from "./achievements";
+import { championPerformerGroups, champions } from "./champions";
+import { programs } from "./programs";
 
 export const siteAssets = {
   heroImage: "/images/seo/crustfit-hero.png",
   mapSearchUrl:
-    "https://www.google.com/maps/search/?api=1&query=CRUSTFIT%20INDIA%20Kollam%20Kerala",
+    "https://www.google.com/maps/search/?api=1&query=CRUSTFIT%20INDIA%20Pathuz%20Plaza%20Opp%20Mulamkadakam%20Temple%20Kollam%20691012%20Kerala",
 };
+
+export const businessAddress = {
+  streetAddress: siteConfig.location.streetAddress,
+  locality: siteConfig.location.city,
+  region: siteConfig.location.region,
+  postalCode: siteConfig.location.postalCode,
+  country: siteConfig.location.country,
+  countryCode: siteConfig.location.countryCode,
+  displayLines: [
+    "Pathuz Plaza, 1st Floor",
+    "Opp Mulamkadakam Temple",
+    siteConfig.location.neighborhood,
+    siteConfig.location.subLocality,
+    `${siteConfig.location.city} ${siteConfig.location.postalCode}`,
+    siteConfig.location.region,
+  ],
+};
+
+export const businessContact = {
+  phoneNumbers: [
+    {
+      label: "Primary phone",
+      value: "+91 98958 79695",
+      href: "tel:+919895879695",
+    },
+    {
+      label: "Secondary phone",
+      value: "+91 90728 58575",
+      href: "tel:+919072858575",
+    },
+  ],
+  contactType: "training enquiries",
+};
+
+export const businessHours = [
+  {
+    days: "Monday - Saturday",
+    schemaDays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    opens: "05:00",
+    closes: "10:00",
+    label: "5:00 AM - 10:00 AM",
+  },
+  {
+    days: "Monday - Saturday",
+    schemaDays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    opens: "15:00",
+    closes: "22:00",
+    label: "3:00 PM - 10:00 PM",
+  },
+  {
+    days: "Sunday",
+    schemaDays: ["Sunday"],
+    opens: "06:00",
+    closes: "10:00",
+    label: "6:00 AM - 10:00 AM",
+  },
+  {
+    days: "Sunday",
+    schemaDays: ["Sunday"],
+    opens: "16:00",
+    closes: "21:00",
+    label: "4:00 PM - 9:00 PM",
+  },
+];
+
+export const socialProfiles = [
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/crustfitindia/",
+    platform: "Instagram",
+  },
+  {
+    label: "YouTube",
+    href: "https://www.youtube.com/@crustfitindia",
+    platform: "YouTube",
+  },
+  {
+    label: "YouTube Shorts",
+    href: "https://www.youtube.com/@crustfitindia/shorts",
+    platform: "YouTube Shorts",
+  },
+];
+
+const googleReviewSummary = {
+  title: "Google Review Summary",
+  ratingValue: "5.0",
+  reviewCount: "100+",
+  ratingLabel: "Google rating",
+  reviewLabel: "Local reviews",
+  summary:
+    "A strong local trust signal for athletes comparing combat sports and martial arts academies in Kollam.",
+};
+
+const footerProgramLinks = programs.map((program) => ({
+  href: program.seoPath ?? "/#programs",
+  label: program.title,
+}));
 
 const heroAchievements = achievements.filter((achievement) =>
   ["rating", "reviews", "disciplines"].includes(achievement.id),
@@ -82,7 +181,7 @@ export const homePageContent = {
     performerRosterLabel: "Recognized performers",
     stats: [
       {
-        value: championAchievements.length.toString(),
+        value: champions.length.toString(),
         label: "Champion profiles",
       },
       {
@@ -94,6 +193,17 @@ export const homePageContent = {
         label: "Featured season",
       },
     ],
+    viewAllCta: {
+      href: "/champions",
+      label: "View all champions",
+    },
+    leadership: {
+      eyebrow: "Leadership",
+      title: "Academy leadership and combat sports governance.",
+      description:
+        "CRUSTFIT INDIA leadership profiles are structured for federation roles, official duties and coaching credentials.",
+      rolesLabel: "Roles",
+    },
   },
   coaches: {
     eyebrow: "Coaching team",
@@ -104,6 +214,10 @@ export const homePageContent = {
       achievements: "Profile focus",
       certifications: "Certifications",
       experience: "Experience",
+    },
+    viewAllCta: {
+      href: "/coaches",
+      label: "View all coaches",
     },
   },
   testimonials: {
@@ -130,7 +244,23 @@ export const homePageContent = {
     },
     videoLabels: {
       embedTitle: "Embedded YouTube video",
-      openExternal: "Open media link",
+      sourceLabel: "Open on YouTube",
+    },
+    viewAllCta: {
+      href: "/gallery",
+      label: "View all gallery",
+    },
+  },
+  videos: {
+    eyebrow: "Video",
+    title: "YouTube training media, ready to scale.",
+    description:
+      "Official YouTube embeds are managed from one data source so new training, sparring, event and competition videos can be added without changing UI code.",
+    embedTitle: "CRUSTFIT INDIA YouTube embed",
+    sourceLabel: "Open on YouTube",
+    viewAllCta: {
+      href: "/gallery#videos",
+      label: "View all videos",
     },
   },
   contact: {
@@ -145,7 +275,11 @@ export const homePageContent = {
     details: [
       {
         label: "Location",
-        value: `${siteConfig.location.city}, ${siteConfig.location.region}, ${siteConfig.location.country}`,
+        value: `${businessAddress.displayLines.join(", ")}, ${siteConfig.location.country}`,
+      },
+      {
+        label: "Phone",
+        value: businessContact.phoneNumbers.map((phone) => phone.value).join(" / "),
       },
       {
         label: "Training enquiries",
@@ -165,14 +299,78 @@ export const siteChromeContent = {
   header: {
     homeAriaLabel: `${siteConfig.name} home`,
     logoInitials: "CF",
-    locationLabel: "Kollam, Kerala",
+    locationLabel: "Mulamkadakam, Kollam",
     navAriaLabel: "Primary navigation",
     ctaLabel: "Enquire",
     ctaHref: "/#contact",
   },
   footer: {
-    identity: `${siteConfig.name} - ${siteConfig.location.city}, ${siteConfig.location.region}, ${siteConfig.location.country}`,
-    summary: "Built for combat sports, martial arts, fitness, and community.",
+    about: {
+      title: "About CrustFit",
+      description:
+        "CRUSTFIT INDIA is a professional combat sports and martial arts academy in Mulamkadakam, Kollam, built for Boxing, Kickboxing, MMA, Muay Thai, traditional martial arts and performance fitness.",
+    },
+    programs: {
+      title: "Programs",
+      links: footerProgramLinks,
+    },
+    quickLinks: {
+      title: "Quick Links",
+      links: siteConfig.navItems,
+    },
+    contact: {
+      title: "Contact",
+      items: [
+        ...businessContact.phoneNumbers,
+        {
+          label: "Map search",
+          value: "Find CRUSTFIT INDIA on Google Maps.",
+          href: siteAssets.mapSearchUrl,
+        },
+      ],
+    },
+    location: {
+      title: "Location",
+      mapLabel: "Open location on maps",
+      address: businessAddress.displayLines,
+    },
+    socialMedia: {
+      title: "Social Media",
+      links: socialProfiles,
+    },
+    reviewSummary: googleReviewSummary,
+    businessInformation: {
+      title: "Business Information",
+      items: [
+        {
+          label: "Academy type",
+          value: "Combat Sports & Martial Arts Academy",
+        },
+        {
+          label: "Service area",
+          value: "Mulamkadakam, Thirumullavaram, Kollam and surrounding Kerala communities",
+        },
+        {
+          label: "Training focus",
+          value:
+            "Boxing, Kickboxing, MMA, Muay Thai, Karate, Taekwondo, Jiu Jitsu, Sambo, Yoga and Zumba",
+        },
+      ],
+    },
+    openingHours: {
+      title: "Opening Hours",
+      note: "Batch timings can change before launch. Confirm current availability before visiting.",
+      hours: businessHours,
+    },
+    localSeo: {
+      title: "Local SEO Content",
+      description:
+        "For athletes searching Boxing Classes Kollam, MMA Training Kollam, Kickboxing Classes Kollam or Martial Arts Academy Kollam, CRUSTFIT INDIA serves Pathuz Plaza, Mulamkadakam, Thirumullavaram and Kollam with structured combat sports coaching.",
+    },
+    bottom: {
+      identity: `${siteConfig.name} - ${siteConfig.location.neighborhood}, ${siteConfig.location.subLocality}, ${siteConfig.location.city} ${siteConfig.location.postalCode}`,
+      summary: "Built for combat sports, martial arts, fitness, and community.",
+    },
   },
 };
 

@@ -9,6 +9,7 @@ type SectionWrapperProps = {
   className?: string;
   description?: string;
   eyebrow?: string;
+  headingLevel?: 1 | 2;
   id: string;
   title: string;
 };
@@ -18,6 +19,7 @@ export function SectionWrapper({
   className,
   description,
   eyebrow,
+  headingLevel,
   id,
   title,
 }: SectionWrapperProps) {
@@ -27,6 +29,7 @@ export function SectionWrapper({
         <SectionHeading
           description={description}
           eyebrow={eyebrow}
+          headingLevel={headingLevel}
           title={title}
           titleId={`${id}-title`}
         />

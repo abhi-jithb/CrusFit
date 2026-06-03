@@ -2,6 +2,7 @@ import type { Coach } from "@/types/coach";
 
 export const coaches: Coach[] = [
   {
+    id: "striking-coaching-team",
     name: "Striking Coaching Team",
     specialization: "Boxing, Kickboxing & Muay Thai",
     experience: "Placeholder profile for a senior striking pathway coach.",
@@ -20,6 +21,7 @@ export const coaches: Coach[] = [
     },
   },
   {
+    id: "grappling-coaching-team",
     name: "Grappling Coaching Team",
     specialization: "MMA, Jiu Jitsu & Sambo",
     experience: "Placeholder profile for a grappling and mixed martial arts coach.",
@@ -38,6 +40,7 @@ export const coaches: Coach[] = [
     },
   },
   {
+    id: "movement-coaching-team",
     name: "Movement Coaching Team",
     specialization: "Yoga, Zumba & Athletic Conditioning",
     experience: "Placeholder profile for movement, recovery and group fitness coaching.",

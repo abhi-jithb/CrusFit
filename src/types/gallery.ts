@@ -15,18 +15,3 @@ export type GalleryPhoto = {
   summary: string;
   title: string;
 };
-
-export type GalleryVideoPlatform = "youtube" | "instagram" | "shorts";
-
-export type GalleryVideo = {
-  ctaLabel: string;
-  embedUrl?: string;
-  id: string;
-  platform: GalleryVideoPlatform;
-  platformLabel: string;
-  summary: string;
-  thumbnail: string;
-  thumbnailAlt: string;
-  title: string;
-  url: string;
-};

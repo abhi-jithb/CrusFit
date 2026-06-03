@@ -8,6 +8,7 @@ type SectionHeadingProps = ComponentPropsWithoutRef<"div"> & {
   align?: "left" | "center";
   description?: string;
   eyebrow?: string;
+  headingLevel?: 1 | 2;
   title: string;
   titleId?: string;
 };
@@ -17,10 +18,13 @@ export function SectionHeading({
   className,
   description,
   eyebrow,
+  headingLevel = 2,
   title,
   titleId,
   ...props
 }: SectionHeadingProps) {
+  const Heading = headingLevel === 1 ? "h1" : "h2";
+
   return (
     <MotionReveal
       className={cn(
@@ -36,9 +40,9 @@ export function SectionHeading({
             {eyebrow}
           </p>
         ) : null}
-        <h2 id={titleId} className="text-3xl font-black text-brand-white sm:text-4xl">
+        <Heading id={titleId} className="text-3xl font-black text-brand-white sm:text-4xl">
           {title}
-        </h2>
+        </Heading>
         {description ? (
           <p className="mt-4 text-base leading-7 text-neutral-300 sm:text-lg">{description}</p>
         ) : null}

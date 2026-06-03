@@ -1,9 +1,13 @@
 export { Badge } from "./badge";
 export { Button, ButtonLink, buttonClassName } from "./button";
+export { ChampionCard } from "./champion-card";
 export { CoachProfileCard } from "./coach-profile-card";
 export { Container } from "./container";
+export { GalleryPhotoCard } from "./gallery-photo-card";
+export { LeadershipCard } from "./leadership-card";
 export { MediaGallery } from "./media-gallery";
 export { MotionReveal } from "./motion-reveal";
 export { ProgramCard } from "./program-card";
 export { SectionHeading } from "./section-heading";
 export { StatCard } from "./stat-card";
+export { VideoEmbedCard } from "./video-embed-card";
