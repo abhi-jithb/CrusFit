@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { SectionWrapper } from "@/components/section-wrapper";
+import { MotionReveal } from "@/components/ui";
 import { galleryItems } from "@/data/home";
 
 export function Gallery() {
@@ -15,26 +16,28 @@ export function Gallery() {
       <ul className="grid gap-4 md:grid-cols-3">
         {galleryItems.map((item, index) => (
           <li key={item.title}>
-            <article className="overflow-hidden rounded-lg border border-white/10 bg-brand-ink">
-              <div className="relative aspect-[4/3]">
-                <Image
-                  src={item.image}
-                  alt={`${item.title} at CRUSTFIT INDIA`}
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 768px) 33vw, 100vw"
-                  style={{
-                    objectPosition:
-                      index === 1 ? "center" : index === 2 ? "right center" : "left center",
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/25 to-transparent" />
-              </div>
-              <div className="p-5">
-                <h3 className="text-lg font-black text-brand-white">{item.title}</h3>
-                <p className="mt-2 leading-7 text-neutral-300">{item.summary}</p>
-              </div>
-            </article>
+            <MotionReveal className="h-full" hoverScale>
+              <article className="combat-card combat-card--interactive h-full overflow-hidden">
+                <div className="relative aspect-[4/3]">
+                  <Image
+                    src={item.image}
+                    alt={`${item.title} at CRUSTFIT INDIA`}
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                    style={{
+                      objectPosition:
+                        index === 1 ? "center" : index === 2 ? "right center" : "left center",
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/25 to-transparent" />
+                </div>
+                <div className="p-5">
+                  <h3 className="text-lg font-black text-brand-white">{item.title}</h3>
+                  <p className="mt-2 leading-7 text-neutral-300">{item.summary}</p>
+                </div>
+              </article>
+            </MotionReveal>
           </li>
         ))}
       </ul>

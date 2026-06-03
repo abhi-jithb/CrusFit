@@ -1,4 +1,5 @@
 import { SectionWrapper } from "@/components/section-wrapper";
+import { MotionReveal } from "@/components/ui";
 import { coachRoles } from "@/data/home";
 
 export function Coaches() {
@@ -13,10 +14,12 @@ export function Coaches() {
       <ul className="grid gap-4 md:grid-cols-3">
         {coachRoles.map((coach) => (
           <li key={coach.role}>
-            <article className="h-full rounded-lg border border-white/10 bg-brand-ink p-6">
-              <h3 className="text-xl font-black text-brand-white">{coach.role}</h3>
-              <p className="mt-3 leading-7 text-neutral-300">{coach.summary}</p>
-            </article>
+            <MotionReveal className="h-full" hoverScale>
+              <article className="combat-card combat-card--interactive h-full p-6">
+                <h3 className="text-xl font-black text-brand-white">{coach.role}</h3>
+                <p className="mt-3 leading-7 text-neutral-300">{coach.summary}</p>
+              </article>
+            </MotionReveal>
           </li>
         ))}
       </ul>

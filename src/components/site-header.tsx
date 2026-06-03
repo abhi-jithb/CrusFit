@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { Container } from "@/components/container";
+import { ButtonLink, Container } from "@/components/ui";
 import { siteConfig } from "@/constants/site";
 
 export function SiteHeader() {
@@ -29,12 +29,9 @@ export function SiteHeader() {
             ))}
           </ul>
         </nav>
-        <Link
-          href="#contact"
-          className="rounded-md bg-brand-yellow px-4 py-2 text-sm font-black text-brand-black transition hover:bg-white"
-        >
+        <ButtonLink href="#contact" size="sm">
           Enquire
-        </Link>
+        </ButtonLink>
       </Container>
     </header>
   );

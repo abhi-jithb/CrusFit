@@ -1,7 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 
-import { Container } from "@/components/container";
+import { ButtonLink, Container, MotionReveal, StatCard } from "@/components/ui";
 import { siteConfig } from "@/constants/site";
 import { programs } from "@/data/home";
 
@@ -20,7 +19,7 @@ export function Hero() {
       <div className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-brand-black to-transparent" />
 
       <Container className="flex min-h-[82svh] items-center py-16 sm:py-20">
-        <div className="max-w-3xl">
+        <MotionReveal className="max-w-3xl" variant="slide-up">
           <p className="text-sm font-black text-brand-yellow sm:text-base">
             Combat Sports & Martial Arts Academy
           </p>
@@ -32,34 +31,17 @@ export function Hero() {
             Kerala.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link
-              href="#programs"
-              className="rounded-md bg-brand-yellow px-6 py-3 text-center text-sm font-black text-brand-black transition hover:bg-white"
-            >
-              Explore programs
-            </Link>
-            <Link
-              href="#contact"
-              className="rounded-md border border-white/30 px-6 py-3 text-center text-sm font-black text-brand-white transition hover:border-brand-yellow hover:text-brand-yellow"
-            >
+            <ButtonLink href="#programs">Explore programs</ButtonLink>
+            <ButtonLink href="#contact" variant="secondary">
               Visit in Kollam
-            </Link>
+            </ButtonLink>
           </div>
           <dl className="mt-10 grid max-w-2xl grid-cols-1 gap-4 sm:grid-cols-3">
-            <div>
-              <dt className="text-3xl font-black text-brand-yellow">{programs.length}</dt>
-              <dd className="mt-1 text-sm font-semibold text-neutral-300">Disciplines</dd>
-            </div>
-            <div>
-              <dt className="text-3xl font-black text-brand-yellow">Kollam</dt>
-              <dd className="mt-1 text-sm font-semibold text-neutral-300">Kerala base</dd>
-            </div>
-            <div>
-              <dt className="text-3xl font-black text-brand-yellow">All levels</dt>
-              <dd className="mt-1 text-sm font-semibold text-neutral-300">Structured pathways</dd>
-            </div>
+            <StatCard label="Disciplines" value={programs.length} />
+            <StatCard label="Kerala base" value="Kollam" />
+            <StatCard label="Structured pathways" value="All levels" />
           </dl>
-        </div>
+        </MotionReveal>
       </Container>
     </section>
   );

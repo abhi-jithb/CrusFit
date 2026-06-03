@@ -1,4 +1,5 @@
 import { SectionWrapper } from "@/components/section-wrapper";
+import { MotionReveal } from "@/components/ui";
 
 const academyPillars = [
   {
@@ -29,13 +30,12 @@ export function About() {
     >
       <div className="grid gap-4 md:grid-cols-3">
         {academyPillars.map((pillar) => (
-          <article
-            key={pillar.title}
-            className="rounded-lg border border-white/10 bg-brand-ink p-6"
-          >
-            <h3 className="text-xl font-black text-brand-white">{pillar.title}</h3>
-            <p className="mt-3 leading-7 text-neutral-300">{pillar.summary}</p>
-          </article>
+          <MotionReveal key={pillar.title} className="h-full" hoverScale>
+            <article className="combat-card combat-card--interactive h-full p-6">
+              <h3 className="text-xl font-black text-brand-white">{pillar.title}</h3>
+              <p className="mt-3 leading-7 text-neutral-300">{pillar.summary}</p>
+            </article>
+          </MotionReveal>
         ))}
       </div>
     </SectionWrapper>

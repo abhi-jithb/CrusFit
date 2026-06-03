@@ -1,4 +1,5 @@
 import { SectionWrapper } from "@/components/section-wrapper";
+import { MotionReveal } from "@/components/ui";
 import { testimonialThemes } from "@/data/home";
 
 export function Testimonials() {
@@ -13,10 +14,12 @@ export function Testimonials() {
       <ul className="grid gap-4 md:grid-cols-3">
         {testimonialThemes.map((item) => (
           <li key={item.title}>
-            <article className="h-full rounded-lg border border-white/10 bg-brand-black p-6">
-              <h3 className="text-xl font-black text-brand-white">{item.title}</h3>
-              <p className="mt-3 leading-7 text-neutral-300">{item.summary}</p>
-            </article>
+            <MotionReveal className="h-full" hoverScale>
+              <article className="combat-card combat-card--dark combat-card--interactive h-full p-6">
+                <h3 className="text-xl font-black text-brand-white">{item.title}</h3>
+                <p className="mt-3 leading-7 text-neutral-300">{item.summary}</p>
+              </article>
+            </MotionReveal>
           </li>
         ))}
       </ul>

@@ -54,6 +54,37 @@ img {
   max-width: 100%;
 }
 
+.combat-card {
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: 0.5rem;
+  background: var(--crustfit-ink);
+}
+
+.combat-card--dark {
+  background: var(--crustfit-black);
+}
+
+.combat-card--glass {
+  background: rgb(17 17 17 / 0.68);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06);
+}
+
+.combat-card--accent {
+  border-color: rgb(245 196 0 / 0.4);
+  background: var(--crustfit-black);
+}
+
+.combat-card--interactive {
+  transition:
+    border-color 200ms ease,
+    background-color 200ms ease,
+    transform 200ms ease;
+}
+
+.combat-card--interactive:hover {
+  border-color: rgb(245 196 0 / 0.45);
+}
+
 :focus-visible {
   outline: 3px solid var(--crustfit-yellow);
   outline-offset: 4px;
